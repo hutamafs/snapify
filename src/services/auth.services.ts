@@ -1,8 +1,8 @@
-import { usersTable } from "../db/schema";
 import { eq } from "drizzle-orm";
-import db from "../db";
-import bcrypt from "bcrypt";
-import { signPayload } from "../utils";
+import bcrypt from "bcryptjs";
+import { usersTable } from "../db/schema.js";
+import db from "../db/index.js";
+import { signPayload } from "../utils/index.js";
 
 const register = async ({
   email,

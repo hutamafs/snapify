@@ -3,7 +3,7 @@ import helmet from "helmet";
 import pg from "pg";
 import * as dotenv from "dotenv";
 import express from "express";
-import router from "./routes";
+import router from "./routes/index.js";
 const PORT = process.env.PORT || 3000;
 dotenv.config();
 

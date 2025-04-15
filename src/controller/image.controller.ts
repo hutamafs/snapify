@@ -1,8 +1,8 @@
 import { ZodError } from "zod";
-import { Request, Response } from "express";
-import { postImageSchema, postCommentSchema } from "../types";
-import * as imageService from "../services/image.services";
-import { handleZodError } from "../utils";
+import type { Request, Response } from "express";
+import { postImageSchema, postCommentSchema } from "../types/index.js";
+import * as imageService from "../services/image.services.js";
+import { handleZodError } from "../utils/index.js";
 
 const getAllImages = async (req: Request, res: Response) => {
   try {

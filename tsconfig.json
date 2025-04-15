@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "sourceMap": false,
+    "noEmit": false,
+    "verbatimModuleSyntax": true,
     "target": "ES2020",
     "module": "ESNext",
     "lib": ["ES2020"],

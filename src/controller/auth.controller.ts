@@ -1,9 +1,9 @@
 import { serialize } from "cookie";
 import { ZodError } from "zod";
-import { Request, Response } from "express";
-import { registerSchema, loginSchema } from "../types/auth.schema";
-import * as authService from "../services/auth.services";
-import { handleZodError } from "../utils";
+import type { Request, Response } from "express";
+import { registerSchema, loginSchema } from "../types/auth.schema.js";
+import * as authService from "../services/auth.services.js";
+import { handleZodError } from "../utils/index.js";
 
 const register = async (req: Request, res: Response) => {
   try {

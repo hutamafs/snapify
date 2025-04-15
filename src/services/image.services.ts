@@ -1,6 +1,6 @@
-import { commentsTable, imagesTable, likesTable } from "../db/schema";
 import { eq, desc, count, and, sql, or } from "drizzle-orm";
-import db from "../db";
+import { commentsTable, imagesTable, likesTable } from "../db/schema.js";
+import db from "../db/index.js";
 
 const getAllImages = async (userId: number) => {
   const images = await db
