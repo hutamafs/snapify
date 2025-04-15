@@ -15,6 +15,13 @@
       "when": 1744521515959,
       "tag": "0001_ambitious_reaper",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1744730266380,
+      "tag": "0002_little_wasp",
+      "breakpoints": true
     }
   ]
 }

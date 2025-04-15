@@ -16,7 +16,7 @@ export const commentsTable = pgTable(
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     content: varchar({ length: 255 }).notNull(),
-    userId: integer().references(() => usersTable.id),
+    userId: integer().references(() => usersTable.id, { onDelete: "cascade" }),
     imageId: integer(),
     createdAt: timestamp().defaultNow(),
   },
@@ -52,7 +52,7 @@ export const imagesTable = pgTable(
   "images",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    userId: integer().references(() => usersTable.id),
+    userId: integer().references(() => usersTable.id, { onDelete: "cascade" }),
     s3Key: varchar().notNull(),
     url: varchar().notNull(),
     metadata: json(),
@@ -76,8 +76,8 @@ export const likesTable = pgTable(
   "likes",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    userId: integer().references(() => usersTable.id),
-    imageId: integer().references(() => imagesTable.id),
+    userId: integer().references(() => usersTable.id, { onDelete: "cascade" }),
+    imageId: integer().references(() => imagesTable.id, { onDelete: "cascade" }),
     createdAt: timestamp().defaultNow(),
   },
   (table) => ({
@@ -95,13 +95,3 @@ export const likesTableRelations = relations(likesTable, ({ one }) => ({
     references: [imagesTable.id],
   }),
 }));
-
-export const jobsTable = pgTable("jobs", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  imageId: integer().references(() => imagesTable.id),
-  type: varchar().notNull(),
-  status: varchar().notNull(),
-  result: json(),
-  createdAt: timestamp().defaultNow(),
-  completed_at: timestamp(),
-});

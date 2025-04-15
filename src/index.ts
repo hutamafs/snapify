@@ -1,3 +1,5 @@
+import cors from "cors";
+import helmet from "helmet";
 import pg from "pg";
 import * as dotenv from "dotenv";
 import express from "express";
@@ -19,5 +21,14 @@ const app = express();
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+app.use(helmet());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
 app.use(express.json());
+
 app.use("/api", router);

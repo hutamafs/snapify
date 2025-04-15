@@ -1,3 +1,4 @@
+import { serialize } from "cookie";
 import { ZodError } from "zod";
 import { Request, Response } from "express";
 import { registerSchema, loginSchema } from "../types/auth.schema";
@@ -21,6 +22,16 @@ const login = async (req: Request, res: Response) => {
   try {
     const validated = loginSchema.parse(req.body);
     const token = await authService.login(validated);
+    res.setHeader(
+      "Set-Cookie",
+      serialize("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+        maxAge: 60 * 60 * 24 * 7,
+      }),
+    );
     res.status(200).json({ status: true, data: token, message: "successfully login" });
   } catch (error) {
     if (error instanceof ZodError) {
