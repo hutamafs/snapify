@@ -25,6 +25,10 @@ jobs:
 
       - name: Install Railway CLI
         run: npm install -g @railway/cli
+      - name: Debug Environment Variables
+        run: env | grep RAILWAY
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
 
       - name: Deploy to Railway
         run: railway up -- --yes
