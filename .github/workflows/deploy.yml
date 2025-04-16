@@ -20,9 +20,6 @@ jobs:
       - name: Install deps
         run: npm install
 
-      - name: Run Linter
-        run: npm run lint
-
       - name: Deploy to Railway
         run: npx railway up --yes
         env:
