@@ -26,10 +26,10 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      - name: Debug Secret Setup
-        run: echo "Railway token set? ${{ secrets.RAILWAY_API_TOKEN != '' }}"
-      - name: Debug Environment Variables
-        run: env | grep -v "SECRET\|TOKEN" | sort
+      - name: Link to Railway project
+        run: railway link --project snapify
+        env:
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
 
       - name: Deploy to Railway
         run: railway up -- --yes
