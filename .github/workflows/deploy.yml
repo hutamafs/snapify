@@ -28,8 +28,10 @@ jobs:
 
       - name: Debug Secret Setup
         run: echo "Railway token set? ${{ secrets.RAILWAY_API_TOKEN != '' }}"
+      - name: Debug Environment Variables
+        run: env | grep -v "SECRET\|TOKEN" | sort
 
       - name: Deploy to Railway
-        run: railway up -- --yes --token $RAILWAY_API_TOKEN
+        run: railway up -- --yes
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
